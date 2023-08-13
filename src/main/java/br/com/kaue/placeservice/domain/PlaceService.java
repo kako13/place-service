@@ -3,7 +3,6 @@ package br.com.kaue.placeservice.domain;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-@Service
 public class PlaceService {
 
     private final PlaceRepository repository;
