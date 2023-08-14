@@ -36,18 +36,18 @@ class PlaceServiceApplicationTests {
 
     }
 
-//    @Test
-//    public void testPlaceFailure() {
-//        var name = "";
-//        var state = "";
-//
-//        webTestClient
-//                .post()
-//                .uri("/places")
-//                .bodyValue(
-//                        new PlaceRequest(name, state)
-//                )
-//                .exchange()
-//                .expectStatus().isBadRequest();
-//    }
+    @Test
+    public void testPlaceFailure() {
+        var name = "";
+        var state = "";
+
+        webTestClient
+                .post()
+                .uri("/places")
+                .bodyValue(
+                        new PlaceRequest(name, state)
+                )
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
 }
