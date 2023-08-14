@@ -29,6 +29,9 @@ Práticas:
 * ###### Uso de DTO para requests e responses
 * ###### Uso de anotações de geração de datas de auditoria (Desta forma o framework proverá as datas, não o cliente e nem o banco)
 * ###### Utilizando Slugfy para criar strings intercaladas de hífens a partir do nome do Place (lugar)
+* ###### Testes automatizados
+
+
 
 ##### Anotações de entendimento:
 ###### Transformar o DTO de entrada (PlaceRequest) num Place (domínio) **faz parte da regra de negócio**. 
@@ -36,3 +39,35 @@ Práticas:
 ###### Ao utilizar as anotações de geração de datas de auditoria  @CreatedDate e @LastModifiedDate, anotar a classe de configuração do Bean do dominio em questão com @EnableR2dbcAuditing
 ###### Desta forma o framework proverá as datas, não o cliente e nem o banco
 ###### O Slugfy é mais conhecido no universo de front, e wordpress e é mais usado para criar o endpoint ou (slug-name) de aplicações
+
+Sobre testes:
+
+* Tradicional: Após o desenvolvimento
+* TDD: Antes do desenvolvimento
+
+Sobre tipos de teste:
+
+* Teste integração (fim a fim): tudo junto funcionando
+* Teste unitário: um para cada camada (Controller, Service, Persistencia)
+
+Para criar um ambiente web no escopo do teste:
+* ###### @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+
+Para realizar requisições HTTP (alternativa ao RestTemplate):
+WebTestClient webTestClient;
+```
+webTestClient
+    .post()
+    .uri("/places")
+    .bodyValue(
+    new PlaceRequest(name, state)
+    )
+    .exchange()
+    .expectBody()
+    .jsonPath("name").isEqualTo(name)
+    .jsonPath("state").isEqualTo(state)
+    .jsonPath("slug").isEqualTo(slug)
+    .jsonPath("createdAt").isNotEmpty()
+    .jsonPath("updatedAt").isNotEmpty();
+```
+A função determina que no exchange será realizada a requisição http, aguardado um body de retorno, e as validações deste body.

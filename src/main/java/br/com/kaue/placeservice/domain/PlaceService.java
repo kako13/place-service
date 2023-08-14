@@ -20,8 +20,8 @@ public class PlaceService {
                     place.name(),
                     this.slg.slugify(place.name()),
                     place.state(),
-                    place.createdAt(),
-                    place.updatedAt()
+                    null,
+                    null
                     ));
     }
 }
