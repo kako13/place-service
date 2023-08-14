@@ -1,6 +1,7 @@
 package br.com.kaue.placeservice.web;
 
-import br.com.kaue.placeservice.domain.Place;
+import br.com.kaue.placeservice.api.PlaceRequest;
+import br.com.kaue.placeservice.api.PlaceResponse;
 import br.com.kaue.placeservice.domain.PlaceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,8 @@ public class PlaceController {
     }
 
     @PostMapping
-    public ResponseEntity<Mono<Place>> create(@RequestBody Place place) {
-        var createPlace = service.create(place);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createPlace);
+    public ResponseEntity<Mono<PlaceResponse>> create(@RequestBody PlaceRequest request) {
+        var placeResponse = service.create(request).map(PlaceMapper::fromPlaceToResponse);
+        return ResponseEntity.status(HttpStatus.CREATED).body(placeResponse);
     }
 }

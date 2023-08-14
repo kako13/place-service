@@ -1,6 +1,6 @@
 package br.com.kaue.placeservice.domain;
 
-import org.springframework.stereotype.Service;
+import br.com.kaue.placeservice.api.PlaceRequest;
 import reactor.core.publisher.Mono;
 
 public class PlaceService {
@@ -11,7 +11,14 @@ public class PlaceService {
         this.repository = repository;
     }
 
-    public Mono<Place> create(Place place) {
-        return repository.save(place);
+    public Mono<Place> create(PlaceRequest place) {
+        return repository.save(new Place(
+                    null,
+                    place.name(),
+                    place.slug(),
+                    place.state(),
+                    place.createdAt(),
+                    place.updatedAt()
+                    ));
     }
 }
