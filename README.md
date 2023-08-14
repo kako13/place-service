@@ -35,7 +35,7 @@ Práticas:
 
 ##### Anotações de entendimento:
 ###### Transformar o DTO de entrada (PlaceRequest) num Place (domínio) **faz parte da regra de negócio**. 
-###### Enquanto que, montar a resposta é responsabilidade do controlador, não é responsabilidade do service (like use cases) pois não é regra de negócio, é uma responsabilidade da interface da api, a camada web O DTO não deve retornar o id
+###### Enquanto que, montar a resposta é responsabilidade do controlador, não é responsabilidade do service (like use cases) pois não é regra de negócio, é uma responsabilidade da interface da api, a camada web. O DTO não deve retornar o id
 ###### Ao utilizar as anotações de geração de datas de auditoria  @CreatedDate e @LastModifiedDate, anotar a classe de configuração do Bean do dominio em questão com @EnableR2dbcAuditing
 ###### Desta forma o framework proverá as datas, não o cliente e nem o banco
 ###### O Slugfy é mais conhecido no universo de front, e wordpress e é mais usado para criar o endpoint ou (slug-name) de aplicações
