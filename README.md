@@ -55,7 +55,7 @@ Back-end destinado a candidatos na ClickBus. Uma API para gerenciar lugares (CRU
 ```
 java -jar place-service/target/place-service-0.0.1-SNAPSHOT.jar
 ```
-### Ou:
+###
 
 ### Docker
 
