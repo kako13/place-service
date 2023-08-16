@@ -6,10 +6,8 @@ import br.com.kaue.placeservice.domain.PlaceService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -27,4 +25,27 @@ public class PlaceController {
         var placeResponse = service.create(request).map(PlaceMapper::fromPlaceToResponse);
         return ResponseEntity.status(HttpStatus.CREATED).body(placeResponse);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Mono<PlaceResponse>> find(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(service.find(id).map(PlaceMapper::fromPlaceToResponse));
+    }
+
+    @GetMapping
+    public ResponseEntity<Flux<PlaceResponse>> list() {
+        return ResponseEntity.status(HttpStatus.OK).body(service.list().map(PlaceMapper::fromPlaceToResponse));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Mono<PlaceResponse>> update(@PathVariable Long id, @Valid @RequestBody PlaceRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, request)
+                                                    .map(PlaceMapper::fromPlaceToResponse));
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<Void> delete(@PathVariable Long id) {
+        return service.delete(id);
+    }
+
 }
