@@ -71,5 +71,100 @@ docker run --name place-service -p 8080:8080 -d place-service:0.0.1-SNAPSHOT
 
 ### Por fim:
 
+
+
+Faça as requisições abaixo utilizando swagger, Postman, bash ou outra ferramenta de sua preferência:
+###
+#### **[- documentação swagger-ui](http://localhost:8080/swagger-ui.html)**
+#### **[- swagger editor](https://editor.swagger.io)** (baixando o **[.json](http://localhost:8080/v3/api-docs)** ou **[.yaml](http://localhost:8080/v3/api-docs.yaml)** do projeto e colando no área de edição)
+##
+#### Create - [ POST ] [localhost:8080/places](localhost:8080/places)
+
+```
+curl --location 'localhost:8080/places' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "My Home", 
+    "state": "Busy"
+}'
+```
+#### Response
+```
+{
+    "name": "My Home", 
+    "slug": "my-home",
+    "state": "Busy",
+    "createdAt": "2023-08-16T07:40:04.9008813",
+    "updatedAt": "2023-08-16T07:40:04.9008813"
+}
+```
+
+##
+#### Find - [ GET ] [localhost:8080/places/1](localhost:8080/places/1)
+```
+curl --location 'localhost:8080/places/1'
+```
+#### Response
+```
+{
+    "name": "My Home", 
+    "slug": "my-home",
+    "state": "Busy",
+    "createdAt": "2023-08-16T07:40:04.9008813",
+    "updatedAt": "2023-08-16T07:40:04.9008813"
+}
+```
+
+##
+#### Update - [ PUT ] [localhost:8080/places/1](localhost:8080/places/1)
+```
+curl --location --request PUT 'localhost:8080/places/1' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "My new Home", 
+    "state": "Available",
+}'
+```
+#### Response
+```
+{
+    "name": "My new Home", 
+    "slug": "my-new-home",
+    "state": "Available",
+    "createdAt": "2023-08-16T07:40:04.9008813",
+    "updatedAt": "2023-08-16T07:40:04.9008813"
+}
+```
+
+##
+#### List - [ GET ] [localhost:8080/places](localhost:8080/places)
+```
+curl --location 'localhost:8080/places'
+```
+```
+[
+    {
+      "name": "My new Home", 
+      "slug": "my-new-home",
+      "state": "Available",
+      "createdAt": "2023-08-16T07:40:04.9008813",
+      "updatedAt": "2023-08-16T07:40:04.9008813"
+    }
+    ...
+]
+```
+
+##
+#### Remove - [ DELETE ] [localhost:8080/places](localhost:8080/places)
+```
+curl --location --request DELETE 'localhost:8080/places/1'
+```
+```
+ (Nothing)
+```
+
+
+
+###
 Acesse a API em [localhost:8080](http://localhost:8080).
 
