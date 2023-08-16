@@ -41,4 +41,11 @@ public class PlaceController {
         return ResponseEntity.status(HttpStatus.OK).body(service.update(id, request)
                                                     .map(PlaceMapper::fromPlaceToResponse));
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<Void> delete(@PathVariable Long id) {
+        return service.delete(id);
+    }
+
 }

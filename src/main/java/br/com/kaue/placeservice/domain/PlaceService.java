@@ -16,7 +16,6 @@ public class PlaceService {
     }
 
     public Mono<Place> create(PlaceRequest place) {
-
         return repository.save(new Place(
                 null,
                 place.name(),
@@ -47,4 +46,8 @@ public class PlaceService {
                 )));
     }
 
+    public Mono<Void> delete(Long id) {
+        return repository.findById(id)
+                .flatMap(repository::delete);
+    }
 }
