@@ -15,13 +15,18 @@ public class PlaceService {
     }
 
     public Mono<Place> create(PlaceRequest place) {
+
         return repository.save(new Place(
-                    null,
-                    place.name(),
-                    this.slg.slugify(place.name()),
-                    place.state(),
-                    null,
-                    null
-                    ));
+                null,
+                place.name(),
+                this.slg.slugify(place.name()),
+                place.state(),
+                null,
+                null
+        ));
+    }
+
+    public Mono<Place> find(Long id) {
+        return repository.findById(id);
     }
 }
