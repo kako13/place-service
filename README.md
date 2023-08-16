@@ -8,7 +8,7 @@
 
 Seguindo a proposta no canal de **[Giuliana Bezerra](https://www.youtube.com/@giulianabezerra)** *(https://github.com/giuliana-bezerra)* no Youtube, este é um
 [desafio](https://github.com/RocketBus/quero-ser-clickbus/tree/master/testes/backend-developer) para desenvolvedores 
-back-end destinado a candidatos na ClickBus. Uma API para gerenciar lugares (CRUD).
+Back-end destinado a candidatos na ClickBus. Uma API para gerenciar lugares (CRUD).
 
 ## Tecnologias:
 
@@ -19,12 +19,14 @@ back-end destinado a candidatos na ClickBus. Uma API para gerenciar lugares (CRU
 * ###### [H2](https://www.h2database.com/html/main.html)
 * ###### [Slugfy](https://github.com/slugify) 
 * ###### [Lombok](https://projectlombok.org/features/)
+* ###### [OpenAPI](https://springdoc.org)
 
 #### Motivações
 - Uso do WebFlux - Atender requisições de forma assincrona para aplicações reativas
 - Uso do R2DBC - Interações com o banco de dados de forma reativa
 - Uso do H2 - Banco de dados em memória
 - Uso do Slugfy - Gerar slug (slug-name)
+- Uso de OpenAPI - Documentar e testar a nossa API
 
 
 ## Práticas:
@@ -36,10 +38,8 @@ back-end destinado a candidatos na ClickBus. Uma API para gerenciar lugares (CRU
 - Geração de slugs automática com o Slugify
 - Auditoria sobre criação e atualização da entidade via anotações (Desta forma o framework proverá as datas, não o cliente e nem o banco)
 - Testes automatizados
+- Documentação
 
-  [//]: # (- Utilizando Slugfy para criar strings intercaladas de hífens a partir do nome do Place &#40;lugar&#41;)
-  [//]: # (- Consultas com filtros dinâmicos usando o Query By Example)
-  [//]: # (- Geração automática do Swagger com a OpenAPI 3)
 
 ## Como Executar
 
@@ -73,7 +73,7 @@ docker run --name place-service -p 8080:8080 -d place-service:0.0.1-SNAPSHOT
 
 
 
-Faça as requisições abaixo utilizando swagger, Postman, bash ou outra ferramenta de sua preferência:
+Faça as requisições abaixo utilizando swagger, Postman, bash ou outra ferramenta da sua preferência:
 ###
 #### **[- documentação swagger-ui](http://localhost:8080/swagger-ui.html)**
 #### **[- swagger editor](https://editor.swagger.io)** (baixando o **[.json](http://localhost:8080/v3/api-docs)** ou **[.yaml](http://localhost:8080/v3/api-docs.yaml)** do projeto e colando no área de edição)
