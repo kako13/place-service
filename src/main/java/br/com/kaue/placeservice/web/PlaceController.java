@@ -35,4 +35,10 @@ public class PlaceController {
     public ResponseEntity<Flux<PlaceResponse>> list() {
         return ResponseEntity.status(HttpStatus.OK).body(service.list().map(PlaceMapper::fromPlaceToResponse));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Mono<PlaceResponse>> update(@PathVariable Long id, @Valid @RequestBody PlaceRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, request)
+                                                    .map(PlaceMapper::fromPlaceToResponse));
+    }
 }

@@ -34,4 +34,17 @@ public class PlaceService {
     public Flux<Place> list() {
         return repository.findAll();
     }
+
+    public Mono<Place> update(Long id, PlaceRequest request) {
+        return repository.findById(id)
+                .flatMap(existingPlace -> repository.save(new Place(
+                        existingPlace.id(),
+                        request.name(),
+                        this.slg.slugify(request.name()),
+                        request.state(),
+                        existingPlace.createdAt(),
+                        null
+                )));
+    }
+
 }
